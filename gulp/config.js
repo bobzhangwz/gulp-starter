@@ -8,16 +8,18 @@ module.exports = {
       baseDir: dest
     }
   },
-  sass: {
-    src: src + "/sass/*.{sass,scss}",
-    dest: dest,
+  compass:{
+    src: src +  "/sass/**/*.{sass,scss}",
+    dest: dest + '/tmp',
     settings: {
-      indentedSyntax: true, // Enable .sass syntax!
-      imagePath: '/images' // Used by the image-url helper
+      // config_file: './config.rb',
+      sass: src + '/sass',
+      image: src + '/images',
+      css:  dest
     }
   },
   images: {
-    src: src + "/images/**",
+    src: [src + "/images/*", "!" + src + "/images/icons"],
     dest: dest + "/images"
   },
   markup: {
@@ -28,23 +30,18 @@ module.exports = {
     // A separate bundle will be generated for each
     // bundle config in the list below
     bundleConfigs: [{
-      entries: src + '/javascript/global.coffee',
+      entries: src + '/javascript/app.coffee',
       dest: dest,
-      outputName: 'global.js',
+      outputName: 'app.js',
       // Additional file extentions to make optional
-      extensions: ['.coffee', '.hbs'],
+      extensions: ['.coffee', '.js']
       // list of modules to make require-able externally
-      require: ['jquery', 'underscore']
-    }, {
-      entries: src + '/javascript/page.js',
-      dest: dest,
-      outputName: 'page.js',
-      // list of externally available modules to exclude from the bundle
-      external: ['jquery', 'underscore']
-    }]
+      // require: ['jquery']
+    }
+    ]
   },
   production: {
-    cssSrc: dest + '/*.css',
+    cssSrc: dest + '/**/*.css',
     jsSrc: dest + '/*.js',
     dest: dest
   }

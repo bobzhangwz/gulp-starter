@@ -1,0 +1,28 @@
+$copyright-year: unquote("2012");
+$company-name: unquote("Example, Inc.");
+
+/*!
+Copyright © #{$copyright-year}, #{$company-name}
+All Rights Reserved.
+*/
+@import "compass/css3";
+@import "compass/reset";
+@import "compass/typography";
+/* @include global-reset; */
+
+/* configuration CSS sprite */
+@import "compass/utilities/sprites";
+$icons-sprite-dimensions: true;
+$icons-search-spacing: 15px;
+@import "icons/*.png";
+
+$font-color: #393939;
+$font-size: 14px;
+
+body{font-family: Verdana, Microsoft YaHei, Simsun; color: $font-color; font-size: $font-size;}
+a{ @include unstyled-link }
+a:hover{ cursor:pointer;}
+
+html , body{ height: 100%; }
+
+body{  position: relative; overflow: hidden; background: yellow;}
