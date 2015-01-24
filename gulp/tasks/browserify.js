@@ -57,19 +57,21 @@ var browserifyTask = function(callback, devMode) {
       b = watchify(b);
       // Rebundle on update
       b.on('update', bundle);
-      bundleLogger.watch(bundleConfig.outputName)
+      bundleLogger.watch(bundleConfig.outputName);
     } else {
+
       // Sort out shared dependencies.
       // b.require exposes modules externally
-      if(bundleConfig.require) b.require(bundleConfig.require)
+      if(bundleConfig.require) b.require(bundleConfig.require);
       // b.external excludes modules from the bundle, and expects
       // they'll be available externally
-      if(bundleConfig.external) b.external(bundleConfig.external)
+      if(bundleConfig.external) b.external(bundleConfig.external);
+
     }
 
     var reportFinished = function() {
       // Log when bundling completes
-      bundleLogger.end(bundleConfig.outputName)
+      bundleLogger.end(bundleConfig.outputName);
 
       if(bundleQueue) {
         bundleQueue--;
@@ -88,7 +90,7 @@ var browserifyTask = function(callback, devMode) {
   config.bundleConfigs.forEach(browserifyThis);
 };
 
-gulp.task('browserify', browserifyTask);
+gulp.task('browserify',  browserifyTask);
 
 // Exporting the task so we can call it directly in our watch task, with the 'devMode' option
-module.exports = browserifyTask
+module.exports = browserifyTask;
